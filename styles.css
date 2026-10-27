@@ -109,6 +109,10 @@ a:hover {
     font-size: 0.8rem;
 }
 
+.sidebar-section p + p {
+    margin-top: 1rem;
+}
+
 .sidebar-section ul {
     margin: 0;
     padding: 0;
@@ -147,6 +151,68 @@ a:hover {
     border-top: 1px solid #333333;
     color: #777777;
     font-size: 0.7rem;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 1.5rem 1.5rem 0;
+    border-right: 1px solid #333333;
+    overflow-y: auto;
+}
+
+.sidebar-scroll-hint {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    margin: 1.5rem -1.5rem 0;
+    padding: 0.75rem 1.5rem;
+    border-top: 1px solid #333333;
+    background: linear-gradient(
+        to bottom,
+        rgba(17, 17, 17, 0.2),
+        #111111 35%
+    );
+    color: #888888;
+    font-size: 0.7rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+}
+
+
+/* ---------- Visible desktop scrollbars ---------- */
+
+@media (min-width: 701px) {
+    .sidebar,
+    .projects-column {
+        scrollbar-width: auto;
+        scrollbar-color: #777777 #1b1b1b;
+    }
+
+    .sidebar::-webkit-scrollbar,
+    .projects-column::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .sidebar::-webkit-scrollbar-track,
+    .projects-column::-webkit-scrollbar-track {
+        background-color: #1b1b1b;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb,
+    .projects-column::-webkit-scrollbar-thumb {
+        border: 3px solid #1b1b1b;
+        border-radius: 999px;
+        background-color: #777777;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover,
+    .projects-column::-webkit-scrollbar-thumb:hover {
+        background-color: #aaaaaa;
+    }
 }
 
 
@@ -218,7 +284,7 @@ a:hover {
     border-radius: 24px;
     background-color: #080808;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-    /* transform: rotate(4deg); */
+    transform: rotate(4deg);
 }
 
 .phone-frame::before {
@@ -269,6 +335,13 @@ a:hover {
     gap: 1rem;
 }
 
+.project-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
 .project-tag,
 .placeholder-label {
     display: inline-block;
@@ -281,6 +354,7 @@ a:hover {
 }
 
 .project-card-content time {
+    flex-shrink: 0;
     color: #aaaaaa;
     font-size: 0.7rem;
 }
@@ -452,6 +526,10 @@ a:hover {
         position: static;
         border-right: 0;
         border-bottom: 1px solid #333333;
+    }
+
+    .sidebar-scroll-hint {
+        display: none;
     }
 
     .projects-column {
