@@ -44,7 +44,7 @@ a:hover {
     position: sticky;
     top: 0;
     height: 100vh;
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 0;
     border-right: 1px solid #333333;
     overflow-y: auto;
 }
@@ -147,19 +147,9 @@ a:hover {
 }
 
 .sidebar-footer {
-    padding-top: 2rem;
-    border-top: 1px solid #333333;
+    padding: 1rem 0 1.5rem;
     color: #777777;
     font-size: 0.7rem;
-}
-
-.sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 1.5rem 1.5rem 0;
-    border-right: 1px solid #333333;
-    overflow-y: auto;
 }
 
 .sidebar-scroll-hint {
@@ -258,7 +248,8 @@ a:hover {
     transition: border-color 180ms ease, transform 180ms ease;
 }
 
-.project-card-featured {
+.project-card-featured,
+.project-card-protostar {
     min-height: 460px;
 }
 
@@ -274,10 +265,27 @@ a:hover {
     object-fit: cover;
 }
 
+.project-card-protostar .project-desktop-image {
+    object-position: center;
+}
+
+.project-card-protostar .project-media::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(10, 4, 20, 0.08),
+        rgba(10, 4, 20, 0.12) 45%,
+        rgba(10, 4, 20, 0.48)
+    );
+    content: "";
+}
+
 .phone-frame {
     position: absolute;
     right: 8%;
     bottom: 8%;
+    z-index: 1;
     width: 145px;
     padding: 8px 6px;
     border: 3px solid #080808;
@@ -306,9 +314,11 @@ a:hover {
 
 .project-card-content {
     position: absolute;
+    right: auto;
     bottom: 1rem;
     left: 1rem;
-    width: min(360px, calc(100% - 2rem));
+    z-index: 2;
+    width: min(390px, calc(100% - 2rem));
     padding: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 8px;
@@ -431,6 +441,27 @@ a:hover {
     line-height: 1.6;
 }
 
+.case-study-header-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.case-study-header-links a {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    color: #d8d8d8;
+    font-size: 0.75rem;
+    transition: border-color 180ms ease, color 180ms ease;
+}
+
+.case-study-header-links a:hover {
+    border-color: #aaaaaa;
+    color: #ffffff;
+}
+
 .case-study-section {
     margin-bottom: 5rem;
 }
@@ -444,6 +475,17 @@ a:hover {
     max-width: 650px;
     color: #aaaaaa;
     line-height: 1.7;
+}
+
+.case-study-section ul {
+    max-width: 700px;
+    padding-left: 1.2rem;
+    color: #aaaaaa;
+}
+
+.case-study-section li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
 }
 
 .case-study-columns {
@@ -466,6 +508,10 @@ a:hover {
     width: 100%;
     border: 1px solid #333333;
     border-radius: 8px;
+}
+
+.case-study-feature-image {
+    margin-bottom: 1.5rem;
 }
 
 .case-study-phone-gallery {
@@ -508,6 +554,51 @@ a:hover {
     font-size: 0.75rem;
 }
 
+.case-study-media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.case-study-media-grid figure {
+    margin: 0;
+}
+
+.case-study-media-grid img {
+    width: 100%;
+    border: 1px solid #333333;
+    border-radius: 8px;
+}
+
+.case-study-media-grid figcaption {
+    margin-top: 0.5rem;
+    color: #888888;
+    font-size: 0.75rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.team-member {
+    padding: 1rem;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    background-color: #191919;
+}
+
+.team-member h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.85rem;
+}
+
+.team-member p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
 
 /* ---------- Mobile layout ---------- */
 
@@ -545,7 +636,8 @@ a:hover {
     }
 
     .project-card,
-    .project-card-featured {
+    .project-card-featured,
+    .project-card-protostar {
         min-height: 320px;
     }
 
@@ -571,6 +663,10 @@ a:hover {
         margin-bottom: 3rem;
     }
 
+    .case-study-header h1 {
+        font-size: clamp(2.5rem, 16vw, 4.5rem);
+    }
+
     .case-study-columns {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -588,7 +684,13 @@ a:hover {
         width: 140px;
     }
 
-    .case-study-gallery {
+    .case-study-gallery,
+    .case-study-media-grid,
+    .team-grid {
         grid-template-columns: 1fr;
+    }
+
+    .case-study-header-links {
+        gap: 0.5rem;
     }
 }
